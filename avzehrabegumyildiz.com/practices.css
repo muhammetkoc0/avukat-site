@@ -1,0 +1,229 @@
+body{
+    background-color: black;
+}
+
+
+
+/* area1 */
+.area1 img{
+    width: 100%;
+    height: 600px;
+    object-fit: cover;
+    opacity: 0.6;
+    position: absolute;
+    top: 17%;
+    z-index: -1;
+}
+.area1 h1{
+    position: relative;
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+    margin-top: 10%;
+    margin-left: 5%;
+}
+.area1 p{
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+    margin-top: 4%;
+    margin-left: 5%;
+    margin-right: 35%;
+    text-align: justify;
+    font-size: 18px;
+    line-height: 1.8;
+}
+
+
+
+/* row1 */
+.row1 {
+    position: relative; /* Change from absolute */
+    top: 0;
+    left: auto;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 10px;
+    flex-wrap: wrap;
+    margin-top: -9%;
+    padding-top: 310px;
+}
+.row1 div {
+    background: linear-gradient(to right, #3e3a39, #7e8780);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 250px;
+    box-shadow: 0px 4px 6px rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 120px;
+    position: relative;
+    border: 2px solid white;
+}
+.row1 div:hover {
+    transform: scale(1.05);
+}
+.row1 img {
+    width: 80px;
+    height: auto;
+    margin-bottom: 10px;
+}
+.row1 h1 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    text-align: center;
+    color: white;
+}
+.read-more-btn {
+    background-color: #6f4b4b;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center;
+    width: 100%;
+    margin-top: auto;
+    display: inline-block;
+    text-decoration: none;
+}
+.read-more-btn:hover {
+    background-color: #5c8f5f;
+}
+
+
+
+/* row2 */
+.row2 {
+    top: 0;
+    left: auto;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 10px;
+    flex-wrap: wrap;
+    margin-top: -9%;
+    padding-top: 10%;
+}
+.row2 div {
+    background: linear-gradient(to right, #3e3a39, #7e8780);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 250px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 120px;
+    position: relative;
+    border: 2px solid white;
+}
+.row2 div:hover {
+    transform: scale(1.05);
+}
+.row2 img {
+    width: 80px;
+    height: auto;
+    margin-bottom: 10px;
+}
+.row2 h1 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+
+
+/* row2 */
+.row3 {
+    top: 0;
+    left: auto;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 10px;
+    flex-wrap: wrap;
+    margin-top: -9%;
+    padding-top: 10%;
+}
+.row3 div {
+    background: linear-gradient(to right, #3e3a39, #7e8780);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 250px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 120px;
+    position: relative;
+    border: 2px solid white;
+}
+.row3 div:hover {
+    transform: scale(1.05);
+}
+.row3 img {
+    width: 80px;
+    height: auto;
+    margin-bottom: 10px;
+}
+.row3 h1 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+
+
+/* row4 */
+.row4 {
+    top: 0;
+    left: auto;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 10px;
+    flex-wrap: wrap;
+    margin-top: -9%;
+    padding-top: 10%;
+}
+.row4 div {
+    background: linear-gradient(to right, #3e3a39, #7e8780);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 250px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 120px;
+    position: relative;
+    border: 2px solid white;
+}
+.row4 div:hover {
+    transform: scale(1.05);
+}
+.row4 img {
+    width: 80px;
+    height: auto;
+    margin-bottom: 10px;
+}
+.row4 h1 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    text-align: center;
+}
