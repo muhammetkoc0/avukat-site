@@ -1,0 +1,104 @@
+/* --- GENEL AYARLAR --- */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa; /* Hafif gri arka plan */
+}
+
+/* --- KART (CARD) STİLLERİ --- */
+.card {
+    border: none; /* Bootstrap'in varsayılan kenarlığını kaldırır */
+    border-radius: 10px; /* Köşeleri yuvarlatır */
+    background-color: #fff;
+    
+    /* Senin eklediğin gölge efekti */
+    -webkit-box-shadow: 5px 5px 19px -1px rgba(0,0,0,0.71);
+    -moz-box-shadow: 5px 5px 19px -1px rgba(0,0,0,0.71);
+    box-shadow: 5px 5px 19px -1px rgba(0,0,0,0.71);
+    
+    /* Efektlerin yumuşak olması için geçiş */
+    transition: all 0.3s ease-in-out;
+}
+
+/* Kartın üzerine gelince (Hover) */
+.card:hover {
+    z-index: 100;
+    background-color: rgb(250, 228, 231); /* Hafif pembe ton */
+    transform: translateY(-5px); /* Kartı hafifçe yukarı kaldırır */
+}
+
+/* Kart içindeki ana resim ayarı */
+.card-img-top {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    height: 200px; /* Resimlerin boyunu eşitler */
+    object-fit: cover; /* Resmi ezmeden kutuya sığdırır */
+}
+
+/* --- YAZAR PROFİL RESMİ VE İKONLAR --- */
+
+/* Yazar resmi (HTML'deki width=60px yerine burayı kullanabilirsin) */
+.card-body img {
+    border-radius: 50%; /* Tam yuvarlak yapar */
+    transition: transform 0.3s ease; /* Büyüme efekti için geçiş */
+    object-fit: cover;
+}
+
+/* Yazar resmine gelince büyüme efekti (Senin .mt-2 isteğin buraya uyarlandı) */
+.card-body img:hover {
+    transform: scale(1.1); /* %110 büyütür (zoom yerine scale daha iyidir) */
+    cursor: pointer;
+}
+
+/* Bootstrap İkonları (bi) Hover */
+.bi:hover {
+    transform: scale(1.2); /* İkonu %20 büyütür */
+    color: green; /* İsteğe bağlı renk değişimi */
+    transition: transform 0.2s;
+}
+
+/* --- SAYFALAMA (PAGINATION) --- */
+
+/* Aktif olmayan sayfa numaraları (.b) */
+.b {
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #333;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+/* Sayfa numarasına gelince (.b:hover) */
+.b:hover {
+    background-color: rgb(38, 77, 38); /* Koyu yeşil */
+    color: white;
+    text-decoration: none;
+}
+
+/* Aktif olan sayfa numarası (.c) */
+.c {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    cursor: default;
+    /* HTML'de inline style vardı, buraya taşıdık */
+    background-color: rgb(38, 77, 38);
+    color: white;
+    border-radius: 5px;
+    width: 40px;
+    height: 40px;
+}
+
+/* --- EKSTRA DÜZENLEMELER --- */
+
+/* Linklerin altındaki çizgiyi kaldırmak için */
+a {
+    text-decoration: none;
+}
+
+/* Footer ve Navbar düzeni için */
+.cursor-pointer {
+    cursor: pointer;
+}
