@@ -1,11 +1,11 @@
 document.addEventListener("DOMContentLoaded", function () {
     const modal = document.getElementById("appointmentModal");
-    const closeBtn = document.querySelector(".close");
+    const closeBtn = document.querySelector(".close-modal");
     const appointmentBtns = document.querySelectorAll(".appointment-btn");
     const practiceAreaDropdown = document.getElementById("practiceArea");
-    const modalTitle = modal.querySelector("h2"); // Target the modal title
-    modal.style.display = "none";
-
+    const modalTitle = document.getElementById("modalTitle");
+    
+    // Uygulama Alanları
     const practiceAreas = [
         "Corporate Law",
         "Intellectual Property",
@@ -16,7 +16,8 @@ document.addEventListener("DOMContentLoaded", function () {
         "Employment Law"
     ];
 
-    function populatePracticeAreas() {
+    // Dropdown'ı Doldur
+    if(practiceAreaDropdown) {
         practiceAreaDropdown.innerHTML = '<option value="" disabled selected>Select Practice Area</option>';
         practiceAreas.forEach(area => {
             let option = document.createElement("option");
@@ -26,93 +27,37 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
+    // Modalı Aç
     function openModal(personName) {
-        populatePracticeAreas();
-        modalTitle.textContent = `Book an Appointment with ${personName}`; // Update modal title with person's name
-        modal.style.display = "flex";
-        setTimeout(() => modal.classList.add("show"), 10);
+        if(modalTitle) {
+            modalTitle.textContent = `Book with ${personName}`;
+        }
+        modal.classList.add("show");
     }
 
-    // Close modal function
+    // Modalı Kapat
     function closeModal() {
         modal.classList.remove("show");
-        setTimeout(() => modal.style.display = "none", 300);
     }
 
-    // Attach event listener to appointment buttons
+    // Butonlara Tıklama Olayı
     appointmentBtns.forEach(btn => {
         btn.addEventListener("click", function (e) {
             e.preventDefault();
-            const personName = this.closest(".box").querySelector("h1").textContent; // Get the person's name
+            // En yakın 'member-card' divini bul ve içindeki h2'den ismi al
+            const card = this.closest(".member-card");
+            const personName = card.querySelector("h2").textContent;
             openModal(personName);
         });
     });
 
-    closeBtn.addEventListener("click", closeModal);
-    window.addEventListener("click", e => { if (e.target === modal) closeModal(); });
-    document.querySelector(".modal-content").addEventListener("click", e => {
-        e.stopPropagation();
-    });
-
-    document.getElementById("appointmentForm").addEventListener("submit", function (e) {
-        e.preventDefault();
-        alert("Appointment booked successfully!");
-        closeModal();
-    });
-});
-
-
-/* to top button */
-/* back to top button function */
-const toTopBtn = document.getElementById("toTopBtn");
-function toggleToTopButton() {
-    if (window.scrollY > 100) {
-        toTopBtn.classList.remove("hidden");
-    } else {
-        toTopBtn.classList.add("hidden");
+    // Kapatma butonu
+    if(closeBtn) {
+        closeBtn.addEventListener("click", closeModal);
     }
-}
-window.addEventListener("scroll", toggleToTopButton);
-toTopBtn.addEventListener("click", function() {
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
+
+    // Dışarı tıklayınca kapat
+    window.addEventListener("click", e => { 
+        if (e.target === modal) closeModal(); 
     });
-});
-
-
-
-// Get all the schedule icons// Get all the schedule icons
-const scheduleIcons = document.querySelectorAll('.member1 .icons a:nth-child(2)');
-
-// Get modal elements
-const modal = document.getElementById('appointmentModal');
-const closeModal = document.querySelector('.close');
-const modalTitle = document.getElementById('modalTitle');
-
-// Function to open the modal and update the title with the exact person name from the h2 tag
-scheduleIcons.forEach((icon) => {
-    icon.addEventListener('click', function(event) {
-        event.preventDefault(); // Prevent link from navigating
-        
-        // Find the closest member box (parent div) and get the person's name from the h2 tag
-        const personName = icon.closest('.member1').querySelector('h2').textContent;
-        
-        // Update the modal title with the person's name
-        modalTitle.textContent = `Book an Appointment with ${personName}`; // Update title dynamically
-        
-        modal.style.display = "flex"; // Show the modal
-    });
-});
-
-// Close modal when close button is clicked
-closeModal.addEventListener('click', () => {
-    modal.style.display = "none"; // Hide the modal
-});
-
-// Close modal when clicked outside of the modal content
-window.addEventListener('click', (event) => {
-    if (event.target === modal) {
-        modal.style.display = "none"; // Hide the modal
-    }
 });

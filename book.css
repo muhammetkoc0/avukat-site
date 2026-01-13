@@ -1,104 +1,202 @@
 /* --- GENEL AYARLAR --- */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f8f9fa; /* Hafif gri arka plan */
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+/* --- NAVBAR STİLLERİ --- */
+.upper-section {
+    background-color: rgb(119, 102, 102);
+    color: white;
+    padding: 10px 0;
+    font-size: 14px;
+}
+
+.custom-navbar {
+    background: linear-gradient(90deg, #3ebf27, #077b32, #2a851a, #3ebf27);
+    background-size: 300% 100%;
+    animation: navbarBackgroundMove 6s infinite linear;
+}
+
+@keyframes navbarBackgroundMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 200% 50%; }
 }
 
 /* --- KART (CARD) STİLLERİ --- */
 .card {
-    border: none; /* Bootstrap'in varsayılan kenarlığını kaldırır */
-    border-radius: 10px; /* Köşeleri yuvarlatır */
+    border: none;
+    border-radius: 10px;
     background-color: #fff;
-    
-    /* Senin eklediğin gölge efekti */
-    -webkit-box-shadow: 5px 5px 19px -1px rgba(0,0,0,0.71);
-    -moz-box-shadow: 5px 5px 19px -1px rgba(0,0,0,0.71);
-    box-shadow: 5px 5px 19px -1px rgba(0,0,0,0.71);
-    
-    /* Efektlerin yumuşak olması için geçiş */
+    /* Gölge Efekti */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     transition: all 0.3s ease-in-out;
+    height: 100%; /* Kartları eşit boyda tutar */
 }
 
 /* Kartın üzerine gelince (Hover) */
 .card:hover {
-    z-index: 100;
-    background-color: rgb(250, 228, 231); /* Hafif pembe ton */
-    transform: translateY(-5px); /* Kartı hafifçe yukarı kaldırır */
+    z-index: 10;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
 }
 
 /* Kart içindeki ana resim ayarı */
 .card-img-top {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-    height: 200px; /* Resimlerin boyunu eşitler */
-    object-fit: cover; /* Resmi ezmeden kutuya sığdırır */
-}
-
-/* --- YAZAR PROFİL RESMİ VE İKONLAR --- */
-
-/* Yazar resmi (HTML'deki width=60px yerine burayı kullanabilirsin) */
-.card-body img {
-    border-radius: 50%; /* Tam yuvarlak yapar */
-    transition: transform 0.3s ease; /* Büyüme efekti için geçiş */
+    height: 200px;
     object-fit: cover;
 }
 
-/* Yazar resmine gelince büyüme efekti (Senin .mt-2 isteğin buraya uyarlandı) */
-.card-body img:hover {
-    transform: scale(1.1); /* %110 büyütür (zoom yerine scale daha iyidir) */
-    cursor: pointer;
-}
-
-/* Bootstrap İkonları (bi) Hover */
-.bi:hover {
-    transform: scale(1.2); /* İkonu %20 büyütür */
-    color: green; /* İsteğe bağlı renk değişimi */
-    transition: transform 0.2s;
-}
-
-/* --- SAYFALAMA (PAGINATION) --- */
-
-/* Aktif olmayan sayfa numaraları (.b) */
-.b {
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
+.card-title a {
     color: #333;
     font-weight: bold;
-    transition: all 0.3s ease;
-    text-align: center;
 }
 
-/* Sayfa numarasına gelince (.b:hover) */
-.b:hover {
-    background-color: rgb(38, 77, 38); /* Koyu yeşil */
-    color: white;
-    text-decoration: none;
+.card-title a:hover {
+    color: green;
 }
 
-/* Aktif olan sayfa numarası (.c) */
-.c {
+/* --- PAGINATION (SAYFALAMA) --- */
+.b, .c {
+    width: 40px;
+    height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: bold;
-    cursor: default;
-    /* HTML'de inline style vardı, buraya taşıdık */
-    background-color: rgb(38, 77, 38);
-    color: white;
     border-radius: 5px;
-    width: 40px;
-    height: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
-/* --- EKSTRA DÜZENLEMELER --- */
+/* Aktif olmayan sayfalar */
+.b {
+    background-color: #fff;
+    color: #333;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
 
-/* Linklerin altındaki çizgiyi kaldırmak için */
-a {
+.b:hover {
+    background-color: rgb(38, 77, 38);
+    color: white;
+}
+
+/* Aktif olan sayfa */
+.c {
+    background-color: rgb(38, 77, 38);
+    color: white;
+}
+
+/* --- FOOTER CSS --- */
+.footer {
+    background: linear-gradient(90deg, #3ebf27, #077b32, #2a851a, #3ebf27);
+    background-size: 300% 100%;
+    animation: footerBackgroundMove 6s infinite linear;
+    padding-top: 40px;
+    color: white;
+}
+
+@keyframes footerBackgroundMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 200% 50%; }
+}
+
+.footer-title {
+    color: white;
+    font-weight: bold;
+    border-bottom: 2px solid rgba(255,255,255,0.3);
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+    display: inline-block;
+}
+
+.footer-links-container, .footer-contact-container, .footer-social-container {
+    text-align: left;
+}
+
+.footer-link-list {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-link-list li a {
+    color: #f1f1f1;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.footer-link-list li a:hover {
+    color: #ffaa00;
+}
+
+.contact-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    color: #f1f1f1;
+}
+
+.contact-row a {
+    color: #f1f1f1;
     text-decoration: none;
 }
 
-/* Footer ve Navbar düzeni için */
-.cursor-pointer {
-    cursor: pointer;
+.contact-icon {
+    color: #ffaa00;
+    margin-right: 10px;
+}
+
+.social-icons-grid {
+    display: flex;
+    gap: 15px;
+}
+
+.social-btn img {
+    width: 35px;
+    transition: transform 0.3s;
+}
+
+.social-btn img:hover {
+    transform: scale(1.2);
+}
+
+.copyright-section {
+    background-color: rgba(0, 0, 0, 0.2);
+    text-align: center;
+    padding: 15px 0;
+    margin-top: 20px;
+}
+
+.copyright-section p {
+    margin: 0;
+    font-size: 14px;
+}
+
+/* Mobil Uyum Düzeltmeleri */
+@media (max-width: 768px) {
+    .upper-section .container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-links-container, 
+    .footer-contact-container, 
+    .footer-social-container {
+        text-align: center;
+        margin-bottom: 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .social-icons-grid {
+        justify-content: center;
+    }
 }

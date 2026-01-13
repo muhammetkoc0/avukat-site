@@ -1,50 +1,46 @@
-    /* back to top button function */
-const toTopBtn = document.getElementById("toTopBtn");
-function toggleToTopButton() {
-    if (window.scrollY > 100) {
-        toTopBtn.classList.remove("hidden");
-    } else {
-        toTopBtn.classList.add("hidden");
-    }
-}
-window.addEventListener("scroll", toggleToTopButton);
-toTopBtn.addEventListener("click", function() {
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
-});
+/* =========================================
+   SAYFA İÇİ ETKİLEŞİMLER (UI INTERACTIONS)
+   ========================================= */
 
-
-
-/* form validation */
-document.getElementById("appointmentForm").addEventListener("submit", function(event) {
-    let isValid = true;
-    const inputs = document.querySelectorAll("#appointmentForm input, #appointmentForm select");
-
-    inputs.forEach(input => {
-        if (!input.value.trim()) {
-            isValid = false;
-            input.style.border = "2px solid red";  // Highlight empty fields
-        } else {
-            input.style.border = "1px solid #ccc";
-        }
-    });
-
-    if (!isValid) {
-        event.preventDefault(); // Stop form submission
-        alert("Please fill in all fields before submitting.");
-    }
-});
-
-
-
-/* appointment form submission */
 document.addEventListener("DOMContentLoaded", function () {
+
+    /* --- 1. BAŞA DÖN BUTONU (BACK TO TOP) --- */
+    const toTopBtn = document.getElementById("toTopBtn");
+
+    if (toTopBtn) {
+        // Sayfa kaydırıldığında butonu göster/gizle
+        window.addEventListener("scroll", function() {
+            if (window.scrollY > 300) { // 300px aşağı inince görünsün
+                toTopBtn.classList.remove("hidden");
+                toTopBtn.style.opacity = "1";
+                toTopBtn.style.visibility = "visible";
+            } else {
+                toTopBtn.classList.add("hidden");
+                toTopBtn.style.opacity = "0";
+                toTopBtn.style.visibility = "hidden";
+            }
+        });
+
+        // Butona tıklayınca yukarı kaydır
+        toTopBtn.addEventListener("click", function() {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
+    }
+
+    /* --- 2. RANDEVU BUTONU İLE AŞAĞI KAYDIRMA --- */
     const appointmentButton = document.getElementById("appointmentButton");
-    appointmentButton.addEventListener("click", function (e) {
-        e.preventDefault();
-        const targetSection = document.getElementById("appointmentSection");
-        targetSection.scrollIntoView({ behavior: "smooth" });
-    });
+    
+    if (appointmentButton) {
+        appointmentButton.addEventListener("click", function (e) {
+            e.preventDefault();
+            const targetSection = document.getElementById("appointmentSection");
+            if (targetSection) {
+                targetSection.scrollIntoView({ behavior: "smooth" });
+            }
+        });
+    }
+
 });

@@ -1,96 +1,189 @@
-body{
-    background-color: rgb(0, 0, 0);
+/* --- GENEL AYARLAR --- */
+body {
+    background-color: black; /* Sayfa genel arka planı siyah */
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
-
-
-/* contact main style sheet */
-.contactmain img{
-    width: 100%;
-    height: 600px;
-    object-fit: cover;
-    opacity: 0.6;
-    position: absolute;
-    top: 17%;
-    z-index: -1;
+/* --- NAVBAR ve HEADER --- */
+.upper-section {
+    background-color: rgb(119, 102, 102);
+    color: white;
+    padding: 10px 0;
+    font-size: 14px;
 }
-.contactmain h1{
+
+.custom-navbar {
+    background: linear-gradient(90deg, #3ebf27, #077b32, #2a851a, #3ebf27);
+    background-size: 300% 100%;
+    animation: navbarBackgroundMove 6s infinite linear;
+}
+
+@keyframes navbarBackgroundMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 200% 50%; }
+}
+
+/* --- HERO --- */
+.contact-hero {
     position: relative;
-    color: white;
-    font-family: 'Times New Roman', Times, serif;
-    margin-top: 10%;
-    margin-left: 5%;
-}
-.contactmain p{
-    color: white;
-    font-family: 'Times New Roman', Times, serif;
-    margin-top: 4%;
-    margin-left: 5%;
-    margin-right: 40%;
-    text-align: justify;
-    font-size: 18px;
-    line-height: 1.8;
-}
-
-
-
-/* contact details sheet */
-.contact-box {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    background: linear-gradient(to right, #000000, #727272);
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
-    width: 80%;
-    max-width: 1500px;
-    margin-left: 8%;
-    margin-top: 11%;
-}
-.contact-details {
-    width: 50%;
-}
-.contact-details h1 {
-    font-size: 40px;
-    margin-bottom: 15px;
-    color: #ffffff;
-}
-.contact-details p {
-    font-size: 16px;
-    color: #ffffff;
-    margin-bottom: 20px;
-    line-height: 1.8;
-}
-.contact-item {
+    height: 40vh;
+    background-image: url('https://images.unsplash.com/photo-1423666639041-f56000c27a9a?q=80&w=2074&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
     display: flex;
     align-items: center;
-    gap: 10px;
-    margin-bottom: 15px;
 }
-.contact-item img {
-    width: 25px;
-    height: 25px;
+
+.hero-overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.6);
 }
-.contact-title {
+
+/* --- İLETİŞİM KUTUSU --- */
+.contact-wrapper {
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.contact-info-box {
+    background: linear-gradient(135deg, #2c3e50, #1a252f);
+}
+
+.icon-circle {
+    width: 50px;
+    height: 50px;
+    background-color: rgba(255,255,255,0.1);
+    border-radius: 50%;
     display: flex;
     align-items: center;
-    gap: 10px;
+    justify-content: center;
 }
-.contact-title img {
-    width: 30px;
-    height: 30px;
+
+/* --- HARİTA --- */
+.map-container iframe {
+    filter: grayscale(0.2); /* Haritayı biraz grileştirerek modern göster */
 }
-h2 {
-    font-size: 18px;
-    color: #ffffff;
-    margin-top: 15px;
+
+/* --- FOOTER CSS --- */
+.footer {
+    background: linear-gradient(90deg, #3ebf27, #077b32, #2a851a, #3ebf27);
+    background-size: 300% 100%;
+    animation: footerBackgroundMove 6s infinite linear;
+    padding-top: 40px;
+    color: white;
 }
-.map-container {
-    width: 45%;
+
+@keyframes footerBackgroundMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 200% 50%; }
 }
-iframe {
-    width: 100%;
-    height: 600px;
-    border-radius: 8px;
+
+.footer-title {
+    color: white;
+    font-weight: bold;
+    border-bottom: 2px solid rgba(255,255,255,0.3);
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+    display: inline-block;
+}
+
+.footer-links-container, .footer-contact-container, .footer-social-container {
+    text-align: left;
+}
+
+.footer-link-list {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-link-list li a {
+    color: #f1f1f1;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.footer-link-list li a:hover {
+    color: #ffaa00;
+}
+
+.contact-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    color: #f1f1f1;
+}
+
+.contact-row a {
+    color: #f1f1f1;
+    text-decoration: none;
+}
+
+.contact-icon {
+    color: #ffaa00;
+    margin-right: 10px;
+}
+
+.social-icons-grid {
+    display: flex;
+    gap: 15px;
+}
+
+.social-btn img {
+    width: 35px;
+    transition: transform 0.3s;
+}
+
+.social-btn img:hover {
+    transform: scale(1.2);
+}
+
+.copyright-section {
+    background-color: rgba(0, 0, 0, 0.2);
+    text-align: center;
+    padding: 15px 0;
+    margin-top: 20px;
+}
+
+.copyright-section p {
+    margin: 0;
+    font-size: 14px;
+}
+
+/* MOBİL İÇİN DÜZELTMELER */
+@media (max-width: 768px) {
+    .upper-section .container {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .footer-links-container, 
+    .footer-contact-container, 
+    .footer-social-container {
+        text-align: center;
+        margin-bottom: 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .social-icons-grid {
+        justify-content: center;
+    }
+
+    .map-container iframe {
+        min-height: 400px; /* Mobilde harita boyunu biraz küçültelim */
+    }
+
+    .display-4 {
+        font-size: 2.5rem; /* Mobilde ana başlığı küçültelim */
+    }
 }

@@ -1,119 +1,99 @@
-body{
-    background-color: black;
+/* --- SUB-HERO (Kapak Resmi) --- */
+.sub-hero {
+    position: relative;
+    width: 100%;
+    height: 50vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #000;
 }
 
-
-
-/* mainimage */
-.mainimage img{
-    width: 100%;
-    height: 500px;
-    object-fit: cover;
-    opacity: 0.6;
+.sub-hero img {
     position: absolute;
-    top: 17%;
-    z-index: -1;
-}
-.mainimage h1 {
-    position: relative;
-    color: white;
-    font-family: 'Times New Roman', Times, serif;
-    margin-top: 10%;
-    margin-left: 5%;
-    display: inline-block;
-    border-bottom: 3px solid rgb(12, 222, 61);
-    padding-bottom: 5px;
-}
-.mainimage p{
-    color: white;
-    font-family: 'Times New Roman', Times, serif;
-    margin-top: 2%;
-    margin-left: 5%;
-    margin-right: 35%;
-    text-align: justify;
-    font-size: 18px;
-}
-
-
-
-/* area1 */
-.area {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 20px;
+    top: 0;
+    left: 0;
     width: 100%;
-    max-width: 1200px;
-    margin: auto;
-}
-.image h1{
-    color: white;
-    margin-top: 60px;
-}
-.area p {
-    position: relative;
-    flex: 1;
-    text-align: justify;
-    font-size: 16px;
-    line-height: 1.5;
-    color: white;
-    margin-top: 20%;
-    margin-right: 10%;
-    right: 5%;
-    line-height: 1.8;
-    cursor: pointer;
-}
-.image {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    margin-top: 13%;
-    margin-right: 10%;
-}
-.image h1{
-    color: white;
-    position: relative;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-.image div {
-    background: #f4f4f4;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    width: 250px;
-}
-.image img {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
+    height: 100%;
     object-fit: cover;
+    opacity: 0.5; /* Yazının okunması için karartma */
 }
-.image h2 {
+
+.sub-hero-content {
+    position: relative;
+    z-index: 2;
     color: white;
-    font-size: 18px;
-    margin: 10px 0 5px;
+    padding: 0 20px;
 }
-.image p {
-    font-size: 14px;
-    color: #62d151;
-    position: inherit;
+
+.sub-hero-content h1 {
+    font-size: 3.5rem;
+    font-weight: bold;
+    border-bottom: 4px solid #3ebf27;
+    display: inline-block;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
 }
+
+.sub-hero-content p {
+    font-size: 1.3rem;
+    font-weight: 300;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+/* --- İÇERİK METNİ --- */
+.content-text p {
+    text-align: justify;
+    line-height: 1.8;
+    margin-bottom: 25px;
+    font-size: 1.05rem;
+    color: #444;
+}
+
+.content-text .lead {
+    color: #2c3e50;
+    border-left: 4px solid #3ebf27;
+    padding-left: 15px;
+    font-style: italic;
+}
+
+/* --- YAN PANEL (Avukat Kartı) --- */
+.key-contacts {
+    background-color: #f8f9fa;
+    border-top: 4px solid #3ebf27;
+    position: sticky;
+    top: 100px; /* Aşağı kaydırırken sabit kalması için */
+}
+
+.contact-person img {
+    width: 120px;
+    height: 120px;
+    border: 3px solid #fff;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.contact-person img:hover {
+    transform: scale(1.05);
+}
+
+.contact-person h5 {
+    font-weight: bold;
+    margin-top: 15px;
+    color: #333;
+}
+
+/* Mobil Uyum */
 @media (max-width: 768px) {
-    .area {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
+    .sub-hero {
+        height: 40vh;
     }
-    .area p {
-        text-align: center;
+    .sub-hero-content h1 {
+        font-size: 2.2rem;
     }
-    .image {
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-    .image div {
-        width: 200px;
+    .sub-hero-content p {
+        font-size: 1rem;
     }
 }

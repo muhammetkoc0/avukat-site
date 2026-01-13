@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Avukatlarımız - Av. Zehra Begüm Yıldız</title>
+    <title>Randevu Al - Av. Zehra Begüm Yıldız</title>
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     
     <link rel="stylesheet" href="index.css">
-    <link rel="stylesheet" href="member.css">
+    <link rel="stylesheet" href="appointment.css">
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js";
-        import { getDatabase } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js";
+        import { getDatabase, ref, set, get } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyAlW5UV_J4NYr70G-AIfhwhBIOQv4tmP-s",
@@ -21,28 +21,60 @@
             databaseURL: "https://law-project-bc3e2-default-rtdb.firebaseio.com/",
             projectId: "law-project-bc3e2",
             storageBucket: "law-project-bc3e2.appspot.com",
-            messagingSenderId: "287038523030", 
+            messagingSenderId: "287038523030",
             appId: "1:287038523030:android:ee0a0efad52e6faa7aa4b7"
         };
 
         const app = initializeApp(firebaseConfig);
         const db = getDatabase(app);
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const appointmentForm = document.getElementById("appointmentForm");
+
+            if(appointmentForm){
+                appointmentForm.addEventListener("submit", async function (e) {
+                    e.preventDefault();
+    
+                    const name = document.getElementById("name").value;
+                    const phone = document.getElementById("phone").value;
+                    const email = document.getElementById("email").value;
+                    const address = document.getElementById("address").value;
+                    const practiceArea = document.getElementById("practiceArea").value;
+                    const lawyer = document.getElementById("lawyer").value;
+    
+                    if (!name || !phone || !email || !address || !practiceArea || !lawyer) {
+                        alert("Lütfen tüm alanları doldurunuz.");
+                        return;
+                    }
+    
+                    try {
+                        const appointmentsRef = ref(db, 'Home appointments');
+                        const snapshot = await get(appointmentsRef);
+                        const appointmentCount = snapshot.exists() ? Object.keys(snapshot.val()).length + 1 : 1;
+    
+                        const newAppointmentRef = ref(db, 'Home appointments/' + appointmentCount);
+                        await set(newAppointmentRef, {
+                            name,
+                            phone,
+                            email,
+                            address,
+                            practiceArea,
+                            lawyer,
+                            timestamp: new Date().toISOString()
+                        });
+    
+                        alert("Randevunuz başarıyla oluşturuldu! En kısa sürede sizinle iletişime geçeceğiz.");
+                        appointmentForm.reset();
+                    } catch (error) {
+                        console.error("Hata: ", error);
+                        alert("Bir hata oluştu. Lütfen tekrar deneyin.");
+                    }
+                });
+            }
+        });
     </script>
 </head>
 <body>
-
-    <div class="upper-section">
-        <div class="container d-flex justify-content-between align-items-center flex-wrap">
-            <div class="leftupper d-flex flex-column flex-md-row gap-2">
-                <span><i class="bi bi-telephone"></i> 0539 660 50 46</span>
-                <span class="d-none d-md-block">|</span>
-                <span><i class="bi bi-envelope"></i> av.zehrabegumyildiz@gmail.com</span>
-            </div>
-            <div class="rightupper mt-2 mt-md-0">
-                <a href="contactus.html" class="text-white text-decoration-none">Bize Ulaşın</a>
-            </div>
-        </div>
-    </div>
 
     <nav class="navbar navbar-expand-lg custom-navbar sticky-top">
         <div class="container">
@@ -69,7 +101,7 @@
                         </ul>
                     </li>
 
-                    <li class="nav-item"><a class="nav-link text-white fw-bold" href="member.html">Avukatlarımız</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="member.html">Avukatlarımız</a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="history.html">Geçmişim</a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="book.html">Blog</a></li>
                     
@@ -81,53 +113,61 @@
         </div>
     </nav>
 
-    <div class="container text-center mt-5 mb-4">
-        <h1 class="page-title">Avukatlarımız</h1>
-        <p class="lead text-muted mx-auto" style="max-width: 800px;">
-            Hukuki süreçlerinizde deneyimli, dinamik ve çözüm odaklı ekibimizle yanınızdayız.
-        </p>
-    </div>
-
-    <div class="container mb-5">
-        <div class="row justify-content-center g-4">
-            
-            <div class="col-lg-3 col-md-6">
-                <div class="member-card">
-                    <div class="img-wrapper">
-                        <img src="png/avzehra.jpeg" alt="Av. Zehra Begüm Yıldız">
-                    </div>
-                    <h2>Av. Zehra Begüm Yıldız</h2>
-                    <p class="text-muted mb-1">Kurucu Avukat</p>
-                    <p class="small text-muted mb-3"><strong>Baro Sicil:</strong> 99691</p>
-                    
-                    <div class="icons">
-                        <a href="https://www.linkedin.com/in/zehra-beg%C3%BCm-y%C4%B1ld%C4%B1z-49a2592a6/" target="_blank">
-                            <img src="img/linkedin.png" alt="Linkedin">
-                        </a>
+    <div class="appointment-page-wrapper">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="form-card shadow-lg">
+                        <div class="text-center mb-4">
+                            <h2 class="form-title">Randevu Oluştur</h2>
+                            <p class="text-muted">Hukuki danışmanlık almak için aşağıdaki formu doldurunuz. En kısa sürede size dönüş yapacağız.</p>
+                        </div>
                         
-                        <a href="contactus.html" title="İletişime Geç">
-                            <img src="img/3d-mail.png" alt="İletişim"> 
-                        </a>
+                        <form id="appointmentForm" class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Ad Soyad</label>
+                                <input type="text" class="form-control" id="name" placeholder="Adınız Soyadınız" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Telefon Numarası</label>
+                                <input type="number" class="form-control" id="phone" placeholder="05XX XXX XX XX" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">E-posta</label>
+                                <input type="email" class="form-control" id="email" placeholder="ornek@email.com" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Şehir / İlçe</label>
+                                <input type="text" class="form-control" id="address" placeholder="İstanbul / Fatih" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Hukuki Konu</label>
+                                <select id="practiceArea" class="form-select" required>
+                                    <option value="">Seçiniz</option>
+                                    <option value="İcra ve İflas Hukuku">İcra ve İflas Hukuku</option>
+                                    <option value="İş Hukuku">İş Hukuku</option>
+                                    <option value="Kira ve Gayrimenkul">Kira ve Gayrimenkul</option>
+                                    <option value="Fikri Mülkiyet">Fikri Mülkiyet</option>
+                                    <option value="Aile Hukuku">Aile Hukuku</option>
+                                    <option value="Ceza Hukuku">Ceza Hukuku</option>
+                                    <option value="Diğer">Diğer</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Avukat Seçimi</label>
+                                <select id="lawyer" class="form-select" required>
+                                    <option value="">Seçiniz</option>
+                                    <option value="Av. Zehra Begüm Yıldız">Av. Zehra Begüm Yıldız</option>
+                                    <option value="Av. Asım Yıldız">Av. Asım Yıldız</option>
+                                </select>
+                            </div>
+                            <div class="col-12 mt-4">
+                                <button type="submit" class="btn btn-success w-100 btn-lg submit-btn">Randevuyu Onayla</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
-
-            <div class="col-lg-3 col-md-6">
-                <div class="member-card">
-                    <div class="img-wrapper">
-                        <img src="https://via.placeholder.com/150" alt="Av. Asım Yıldız">
-                    </div>
-                    <h2>Av. Asım Yıldız</h2>
-                    <p class="text-muted mb-1">Kıdemli Avukat</p>
-                    <p class="small text-muted mb-3"><strong>Baro Sicil:</strong> -</p>
-                    
-                    <div class="icons">
-                        <a href="#" target="_blank"><img src="img/linkedin.png" alt="Linkedin"></a>
-                        <a href="contactus.html" title="İletişime Geç"><img src="img/3d-mail.png" alt="İletişim"></a>
-                    </div>
-                </div>
-            </div>
-
         </div>
     </div>
 
@@ -171,8 +211,10 @@
                         <div class="footer-social-container">
                             <h4 class="footer-title">Takip Edin</h4>
                             <div class="social-icons-grid">
-                                <a href="https://www.linkedin.com/in/zehra-beg%C3%BCm-y%C4%B1ld%C4%B1z-49a2592a6/" target="_blank" class="social-btn linkedin"><img src="img/linkedin.png" alt="In"></a>
                                 <a href="#" class="social-btn instagram"><img src="img/instagram.png" alt="Ins"></a>
+                                <a href="https://www.linkedin.com/in/zehra-beg%C3%BCm-y%C4%B1ld%C4%B1z-49a2592a6/" target="_blank" class="social-btn linkedin">
+    <img src="img/linkedin.png" alt="In">
+</a>
                             </div>
                         </div>
                     </div>
@@ -181,13 +223,10 @@
             <div class="copyright-section">
                 <p>&copy; 2026 Tüm Haklar Saklıdır Av. Zehra Begüm YILDIZ</p>
             </div>
-            <div class="backtotop">
-                 <button id="toTopBtn">Başa Dön</button>
-            </div>
         </footer>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="index.js"></script>
-    </body>
+</body>
 </html>

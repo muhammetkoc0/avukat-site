@@ -1,216 +1,185 @@
-body{
-    background-color: black;
-}
-
-
-
-/* his1 style sheet */
-.his1 {
+/* =========================================
+   1. HERO BÖLÜMÜ (KAPAK)
+   ========================================= */
+.history-hero {
     position: relative;
     width: 100%;
-    height: 100vh;
-    overflow: hidden;
-}
-.his1 img {
-    width: 100%;
-    height: 700px;
-    object-fit: cover;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
-    opacity: 0.6;
-    border-radius: 10px;
-}
-.his1 h1,
-.his1 p {
-    position: absolute;
-    color: white;
-    width: 80%;
-    max-width: 800px;
-    z-index: 2;
-}
-.his1 h1 {
-    top: 20%;
-    left: 30%;
-    transform: translateX(-50%);
-    font-size: 35px;
-    font-weight: bold;
-}
-.his1 p {
-    top: 40%;
-    left: 30%;
-    transform: translateX(-50%);
-    font-size: 20px;
-    line-height: 1.6;
-}
-
-
-
-/* his2 style sheet */
-.his2 {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    overflow: hidden;
-}
-.his2 img {
-    width: 100%;
-    height: 700px;
-    object-fit: cover;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
-    opacity: 0.6;
-    border-radius: 10px;
-    z-index: 0;
-}
-.his2 h1,
-.his2 p {
-    position: absolute;
-    color: white;
-    width: 80%;
-    max-width: 800px;
-    text-align: center;
-    z-index: 2;
-}
-.his2 h1 {
-    top: 20%;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 35px;
-    font-weight: bold;
-}
-.his2 p {
-    top: 36%;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 20px;
-    line-height: 1.6;
-}
-
-
-
-/* his3 style sheet */
-.his3 {
-    padding: 40px;
-    text-align: center;
-}
-.his3 h1 {
-    font-size: 2em;
-    margin-bottom: 10px;
-    color: white;
-    margin-top: -7%;
-    margin-left: 40%;
-}
-.his3 p {
-    max-width: 800px;
-    margin: 0 auto 30px auto;
-    font-size: 1em;
-    color: white;
-    line-height: 1.8;
-}
-.image-row {
+    height: 60vh; /* Ekranın %60'ı yükseklik */
     display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-}
-.image-row img {
-    width: 22%;
-    height: 300px;
-    object-fit: cover;
-    border-radius: 10px;
-    border: 1px;
-    border-color: white;
-    border-style: solid;
-}
-
-
-
-/* his4 style sheet */
-.his4 {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    overflow: hidden;
-}
-.his4 img{
-    width: 600px;
-    height: 500px;
-    object-fit: cover;
-    margin-left: 5%;
-    border-radius: 10px;
-    opacity: 0.9;
-}
-.his4 h1{
-    position: relative;
-    color: white;
-    font-size: 30px;
-    margin-left: 50%;
-    top: 20%;
-}
-.his4 p{
-    position: relative;
-    color: white;
-    text-align: justify;
-    line-height: 1.8;
-    margin-left: 57%;
-    top: -50%;
-    transform: translateX(-20%);
-}
-
-
-
-/* timeline style sheet */
-.timeline {
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-    margin: 40px 0;
-    flex-wrap: wrap;
     align-items: center;
+    justify-content: center;
+    background-color: #111;
+    overflow: hidden;
 }
-.year {
+
+.hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.6; /* Resim karartma */
+    z-index: 1;
+    transition: transform 10s ease; /* Hafif zoom efekti için */
+}
+
+/* Sayfa yüklendiğinde resim hafifçe büyüsün isterseniz */
+.history-hero:hover .hero-bg {
+    transform: scale(1.05);
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.7));
+    z-index: 2;
+}
+
+/* =========================================
+   2. ZAMAN ÇİZELGESİ (TIMELINE)
+   ========================================= */
+.timeline-title {
+    color: #2c3e50;
+    font-family: 'Times New Roman', serif;
+    font-size: 2.5rem;
+    position: relative;
+    display: inline-block;
+}
+
+/* Başlığın altına yeşil çizgi */
+.timeline-title::after {
+    content: '';
+    display: block;
     width: 60px;
-    height: 60px;
+    height: 4px;
+    background-color: #3ebf27;
+    margin: 10px auto 0;
+    border-radius: 2px;
+}
+
+.timeline {
+    position: relative;
+    padding: 20px 0;
+}
+
+/* Yıl Daireleri */
+.year-circle {
+    width: 110px;
+    height: 110px;
     border-radius: 50%;
-    background-color: #2c3e50;
-    color: #ffffff;
+    background-color: #ffffff;
+    border: 3px solid #e0e0e0;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 1.3rem;
     font-weight: bold;
+    color: #555;
     cursor: pointer;
-    transition: background 0.3s ease, color 0.3s ease;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Yaylanma efekti */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    position: relative;
+    z-index: 10;
 }
-.timeline h1 {
-    color: #ffffff;
-    font-size: 25px;
-    margin-bottom: 20px;
-    text-align: center;
+
+/* Hover (Üzerine Gelme) Durumu */
+.year-circle:hover {
+    border-color: #3ebf27;
+    color: #3ebf27;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
 }
-.year.active {
-    background-color: #09f25f;
-    color: black;
+
+/* Aktif (Seçili) Durum */
+.active-year {
+    background-color: #3ebf27;
+    border-color: #3ebf27;
+    color: #ffffff !important;
+    transform: scale(1.15);
+    box-shadow: 0 0 20px rgba(62, 191, 39, 0.5);
 }
-.milestone {
-    text-align: center;
-    margin-top: 30px;
-    font-size: 18px;
-    max-width: 600px;
-    margin-left: 29%;
-    margin-right: auto;
-    color: #333333;
-    padding: 10px 20px;
-    border-left: 4px solid #0aec95;
-    display: none;
-    background-color: #ecf0f1;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+
+/* Dairelerin arasındaki bağlantı çizgisi (Mobilde gizlenebilir) */
+@media (min-width: 768px) {
+    .timeline::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 10%;
+        right: 10%;
+        height: 2px;
+        background-color: #e0e0e0;
+        z-index: 0;
+        transform: translateY(-50%);
+    }
 }
-.milestone:hover {
-    background-color: #ced6e0;
+
+/* =========================================
+   3. MILESTONE BOX (DETAY KUTUSU)
+   ========================================= */
+.milestone-box {
+    background-color: #f8f9fa;
+    border-left: 6px solid #3ebf27; /* Sol tarafta yeşil şerit */
+    border-radius: 8px;
+    max-width: 800px;
+    padding: 40px;
+    margin-top: 40px;
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.milestone-box h3 {
+    font-family: 'Segoe UI', sans-serif;
+    color: #2c3e50;
+    margin-bottom: 15px;
+}
+
+.milestone-box p {
+    color: #666;
+    line-height: 1.8;
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+/* =========================================
+   4. MOBİL UYUMLULUK
+   ========================================= */
+@media (max-width: 768px) {
+    .history-hero {
+        height: 40vh;
+    }
+
+    .display-3 {
+        font-size: 2rem;
+    }
+
+    .timeline-title {
+        font-size: 2rem;
+    }
+
+    .timeline {
+        gap: 15px !important;
+    }
+
+    .year-circle {
+        width: 80px;
+        height: 80px;
+        font-size: 1rem;
+        border-width: 2px;
+    }
+
+    /* Mobilde çizgiyi kaldır, daireler alt alta veya sıkışık dursun */
+    .timeline::before {
+        display: none; 
+    }
+
+    .milestone-box {
+        padding: 25px;
+        margin-top: 30px;
+    }
 }
